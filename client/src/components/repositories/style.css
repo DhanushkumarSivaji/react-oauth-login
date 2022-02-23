@@ -1,0 +1,22 @@
+
+.card-container .card-header {
+    background-color: black;
+    color: white;
+    text-transform: uppercase;
+    font-size: 24px;
+}
+
+
+.card-container {
+    border-radius: 10px;
+
+}
+.card-container .card {
+
+    border-radius: 15px;
+
+}
+
+.card-container .card-footer {
+    background-color: white;
+}

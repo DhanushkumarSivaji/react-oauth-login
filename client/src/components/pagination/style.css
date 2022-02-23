@@ -1,0 +1,23 @@
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0px;
+}
+
+.pagination-container .page-link {
+    margin: 0px;
+}
+
+.page-link {
+    color: black;
+    cursor: pointer;
+}
+
+.page-link:hover {
+    color: black;
+}
+
+.page-item.active .page-link {
+    background-color: black;
+    border-color: black;
+}
