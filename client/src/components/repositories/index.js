@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
+import { isEmpty } from "lodash";
+import AuthContext from '../../store/context';
 import Pagination from "../pagination";
 import './style.css';
 
@@ -8,16 +10,21 @@ export default function Repositories() {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
+  const authContext = useContext(AuthContext);
+
+  const { user } = authContext;
 
   useEffect(() => {
     const getData = async () => {
+      if(!isEmpty(user)){
       let result = await axios.get(
-        `https://api.github.com/users/DhanushkumarSivaji/repos`
+        `https://api.github.com/users/${user.login}/repos`
       );
       setPosts(result.data);
+      }
     };
     getData();
-  }, []);
+  }, [user]);
 
       // Get current posts
       const indexOfLastPost = currentPage * postsPerPage;

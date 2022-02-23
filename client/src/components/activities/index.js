@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import axios from "axios";
+import { isEmpty } from "lodash";
+import AuthContext from '../../store/context';
 import Pagination from "../pagination";
 
 
@@ -7,16 +9,22 @@ export default function Activities() {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
+  const authContext = useContext(AuthContext);
+
+  const { user } = authContext;
 
   useEffect(() => {
     const getData = async () => {
-      let result = await axios.get(
-        `https://api.github.com/users/DhanushkumarSivaji/events`
-      );
-      setPosts(result.data);
+      if(!isEmpty(user)){
+        let result = await axios.get(
+          `https://api.github.com/users/${user.login}/events`
+        );
+        setPosts(result.data);
+      }
+
     };
     getData();
-  }, []);
+  }, [user]);
 
     // Get current posts
     const indexOfLastPost = currentPage * postsPerPage;
