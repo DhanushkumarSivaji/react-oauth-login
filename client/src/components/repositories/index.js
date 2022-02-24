@@ -1,5 +1,6 @@
 import React from "react";
 import { isEmpty } from "lodash";
+import moment from "moment";
 import Pagination from "../pagination";
 import FetchData from "../hoc/fetchData";
 import "./style.css";
@@ -20,17 +21,17 @@ function Repositories({
             <table className="table">
               <thead className="thead-dark">
                 <tr>
-                  <th scope="col">S.no</th>
                   <th scope="col">Repo Name</th>
                   <th scope="col">Repo Type</th>
+                  <th scope="col">Last Commit</th>
                 </tr>
               </thead>
               <tbody>
                 {currentPosts.map((val, i) => (
                   <tr>
-                    <th scope="row">{i + 1}</th>
                     <td>{val.name}</td>
                     <td>{val.type ? "Private" : "Public"}</td>
+                    <td>{moment(val.pushed_at).format("DD/MM/YYYY")}</td>
                   </tr>
                 ))}
               </tbody>
