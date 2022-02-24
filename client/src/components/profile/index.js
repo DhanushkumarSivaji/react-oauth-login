@@ -14,7 +14,6 @@ export default function Profile() {
   useEffect(() => {
     if(!isEmpty(user)){
       setUserData(user)
-      console.log("user",user)
     }
   },[user])
 
@@ -30,9 +29,9 @@ export default function Profile() {
               width="150"
             />
             <div className="mt-3">
-              <h4>{userData.name}</h4>
-              <p className="text-secondary mb-1">{user.bio}</p>
-              <p className="text-muted font-size-sm">{userData.location}</p>
+              <h4>{userData.name || null}</h4>
+              <p className="text-secondary mb-1">{user.bio || null}</p>
+              <p className="text-muted font-size-sm">{userData.location || null}</p>
             </div>
           </div>
         </div>

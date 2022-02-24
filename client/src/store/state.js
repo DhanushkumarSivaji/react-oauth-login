@@ -6,7 +6,6 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   SHOW_LOADER,
-  HIDE_LOADER
 } from './types';
 
 const State = props => {
@@ -44,13 +43,6 @@ const State = props => {
     });
   }
 
-  const hideLoader = () => {
-    dispatch({
-      type: HIDE_LOADER,
-      payload: false
-    });
-  }
-
   return (
     <Context.Provider
       value={{
@@ -62,7 +54,6 @@ const State = props => {
         loginError,
         logout,
         showLoader,
-        hideLoader
       }}
     >
       {props.children}

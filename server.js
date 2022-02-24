@@ -48,6 +48,8 @@ app.post("/authenticate", (req, res) => {
 
 
 
-const PORT = process.env.SERVER_PORT || 8000;
-app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, () => {
+    console.log(`Our app is running on port ${ PORT }`);
+});
 

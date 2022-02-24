@@ -22,7 +22,7 @@ export default function Login(props) {
       showLoader();
 
       const authenticateToken = async () => {
-        await fetch("http://localhost:8000/authenticate", {
+        await fetch(process.env.REACT_APP_PROXY_URL, {
           method: "POST",
           body: JSON.stringify(requestData),
         })
