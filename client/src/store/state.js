@@ -11,11 +11,9 @@ import {
 
 const State = props => {
   const initialState = {
-    token: sessionStorage.getItem('token'),
-    isAuthenticated: null,
+    isAuthenticated: sessionStorage.getItem('isAuthenticated') || false,
     loading: false,
-    user: null,
-    error: null
+    user:  JSON.parse(sessionStorage.getItem('user')) || null,
   };
 
   const [state, dispatch] = useReducer(Reducer, initialState);

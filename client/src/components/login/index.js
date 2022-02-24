@@ -57,7 +57,7 @@ export default function Login(props) {
          { !loading ? 
           <a
             className="btn btn-dark"
-            href={`https://github.com/login/oauth/authorize?scope=user&client_id=a1b53f517373a647beab&redirect_uri=http://localhost:3000/login`}
+            href={`https://github.com/login/oauth/authorize?scope=user&client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}`}
           >
             <span>Sign in with GitHub</span>
           </a>

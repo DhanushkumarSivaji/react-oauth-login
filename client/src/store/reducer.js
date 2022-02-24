@@ -10,7 +10,8 @@ import {
   export default (state, action) => {
     switch (action.type) {
       case LOGIN_SUCCESS:
-        // sessionStorage.setItem('token', action.payload.token);
+        sessionStorage.setItem('isAuthenticated', true);
+        sessionStorage.setItem('user',JSON.stringify(action.payload))
         return {
           ...state,
           ...action.payload,
@@ -20,7 +21,7 @@ import {
         };
       case LOGIN_FAIL:
       case LOGOUT:
-        // sessionStorage.removeItem('token');
+        sessionStorage.clear();
         return {
           ...state,
           token: null,

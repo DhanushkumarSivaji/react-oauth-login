@@ -1,38 +1,11 @@
-import React, { useEffect, useState, useContext } from "react";
-import axios from "axios";
-import { isEmpty } from "lodash";
-import AuthContext from '../../store/context';
+import React from "react";
 import Pagination from "../pagination";
+import FetchData from '../hoc/fetchData';
 import './style.css';
 
 
-export default function Repositories() {
-  const [posts, setPosts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(5);
-  const authContext = useContext(AuthContext);
+function Repositories({currentPosts,postsPerPage,totalPosts,paginate,currentPage}) {
 
-  const { user } = authContext;
-
-  useEffect(() => {
-    const getData = async () => {
-      if(!isEmpty(user)){
-      let result = await axios.get(
-        `https://api.github.com/users/${user.login}/repos`
-      );
-      setPosts(result.data);
-      }
-    };
-    getData();
-  }, [user]);
-
-      // Get current posts
-      const indexOfLastPost = currentPage * postsPerPage;
-      const indexOfFirstPost = indexOfLastPost - postsPerPage;
-      const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-    
-      // Change page
-  const paginate = pageNumber => setCurrentPage(pageNumber);
   return (
     <div className="card-container">
       <div className="card text-center">
@@ -60,7 +33,7 @@ export default function Repositories() {
         <div className="card-footer text-muted">
         <Pagination
             postsPerPage={postsPerPage}
-            totalPosts={posts.length}
+            totalPosts={totalPosts}
             paginate={paginate}
             currentPage={currentPage}
         />
@@ -69,3 +42,5 @@ export default function Repositories() {
     </div>
   );
 }
+
+export default FetchData(Repositories,{path:"repos"});
