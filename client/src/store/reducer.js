@@ -3,6 +3,8 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT,
+    SHOW_LOADER,
+    HIDE_LOADER
   } from './types';
   
   export default (state, action) => {
@@ -26,6 +28,12 @@ import {
           loading: false,
           user: null,
         };
+      case SHOW_LOADER:
+      case HIDE_LOADER:
+        return {
+          ...state,
+          loading: action.payload
+        }
       default:
         return state;
     }

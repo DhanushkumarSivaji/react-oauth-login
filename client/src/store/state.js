@@ -2,19 +2,18 @@ import React, { useReducer } from 'react';
 import Context from './context';
 import Reducer from './reducer';
 import {
-//   USER_LOADED,
-//   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
-//   CLEAR_ERRORS
+  SHOW_LOADER,
+  HIDE_LOADER
 } from './types';
 
 const State = props => {
   const initialState = {
     token: sessionStorage.getItem('token'),
     isAuthenticated: null,
-    loading: true,
+    loading: false,
     user: null,
     error: null
   };
@@ -40,9 +39,19 @@ const State = props => {
   // Logout
   const logout = () => dispatch({ type: LOGOUT });
 
-  // Clear Errors
-//   const clearErrors = () => dispatch({type:CLEAR_ERRORS})
+  const showLoader = () => {
+    dispatch({
+      type: SHOW_LOADER,
+      payload: true
+    });
+  }
 
+  const hideLoader = () => {
+    dispatch({
+      type: HIDE_LOADER,
+      payload: false
+    });
+  }
 
   return (
     <Context.Provider
@@ -51,12 +60,11 @@ const State = props => {
         isAuthenticated: state.isAuthenticated,
         loading: state.loading,
         user: state.user,
-        // register,
-        // clearErrors,
-        // loadUser,
         loginSuccess,
         loginError,
-        logout
+        logout,
+        showLoader,
+        hideLoader
       }}
     >
       {props.children}
