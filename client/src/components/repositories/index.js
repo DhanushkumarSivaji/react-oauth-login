@@ -37,8 +37,8 @@ function Repositories({
               </tbody>
             </table>
           ) : (
-            <div class="d-flex justify-content-center">
-              <div class="spinner-border" role="status"></div>
+            <div className="d-flex justify-content-center">
+              <div className="spinner-border" role="status"></div>
             </div>
           )}
         </div>

@@ -43,3 +43,7 @@
     margin-right: 10px;
     border-width: 0.1em;
 }
+
+.login-card-container .text-danger {
+    text-align: center;
+}

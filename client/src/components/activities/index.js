@@ -16,7 +16,6 @@ function Activities({
       <div className="card text-center">
         <div className="card-header">Recent Activities</div>
         <div className="card-body">
-          {console.log("currentPosts",currentPosts)}
           {!isEmpty(currentPosts) ? (
             <table className="table">
               <thead className="thead-dark">
@@ -37,8 +36,8 @@ function Activities({
               </tbody>
             </table>
           ) : (
-            <div class="d-flex justify-content-center">
-              <div class="spinner-border" role="status"></div>
+            <div className="d-flex justify-content-center">
+              <div className="spinner-border" role="status"></div>
             </div>
           )}
         </div>

@@ -13,6 +13,7 @@ const State = props => {
     isAuthenticated: sessionStorage.getItem('isAuthenticated') || false,
     loading: false,
     user:  JSON.parse(sessionStorage.getItem('user')) || null,
+    error: false,
   };
 
   const [state, dispatch] = useReducer(Reducer, initialState);
@@ -27,9 +28,11 @@ const State = props => {
   };
 
   const loginError = (err) => {
+
+    console.log("i am called")
     dispatch({
       type: LOGIN_FAIL,
-      payload: err
+      payload: true
     });
   }
 
@@ -50,6 +53,7 @@ const State = props => {
         isAuthenticated: state.isAuthenticated,
         loading: state.loading,
         user: state.user,
+        error: state.error,
         loginSuccess,
         loginError,
         logout,

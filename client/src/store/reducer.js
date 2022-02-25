@@ -16,9 +16,19 @@ export default (state, action) => {
         ...action.payload,
         isAuthenticated: true,
         loading: false,
+        errror: false,
         user: action.payload
       };
     case LOGIN_FAIL:
+      sessionStorage.clear();
+      return {
+        ...state,
+        error: action.payload,
+        token: null,
+        isAuthenticated: false,
+        loading: false,
+        user: null,
+      };
     case LOGOUT:
       sessionStorage.clear();
       return {
@@ -27,6 +37,7 @@ export default (state, action) => {
         isAuthenticated: false,
         loading: false,
         user: null,
+        errror: false
       };
     case SHOW_LOADER:
       return {
